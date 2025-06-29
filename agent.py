@@ -8,16 +8,16 @@ import requests
 load_dotenv()
 
 def get_weather(city):
-    api_key = os.getenv("OPENWEATHER_API_KEY")  # fetch your API key from .env
+    api_key = os.getenv("OPENWEATHER_API_KEY")  
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
 
     res = requests.get(url)  
     data = res.json()        
 
-    if res.status_code == 200:  # status 200 = success
-        temp = data['main']['temp']  # current temperature
-        condition = data['weather'][0]['description']  # e.g., "clear sky"
-        humidity = data['main']['humidity']  # % humidity
+    if res.status_code == 200:  
+        temp = data['main']['temp']  
+        condition = data['weather'][0]['description']  
+        humidity = data['main']['humidity']  
         return f"The current temperature in {city} is {temp}°C with {condition} and humidity at {humidity}%."
     else:
         return "Sorry, I couldn't fetch the weather right now."
